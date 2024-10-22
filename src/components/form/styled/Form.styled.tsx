@@ -27,7 +27,7 @@ const Wrapper = styled(Form)(({ theme }) => ({
   },
 
   [mediaQuery('2000px')]: {
-    width: "40%",
+    width: "70%",
     margin: "auto"
   },
 }));
