@@ -11,7 +11,7 @@ const General = () => {
             <Box>
                 <Grid container spacing={2}>
                     <Grid size={{ xs: 12, md: 6 }}>
-                        <UserField label="Birth Date:" data="22.10.1994" />
+                        <UserField type="date" label="Birth Date:" data="22.10.1994" />
                     </Grid>
                     <Grid size={{ xs: 12, md: 6 }}>
                         <UserField label="Job Title:" data="Front End Developer" />

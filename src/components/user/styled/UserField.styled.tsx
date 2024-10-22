@@ -30,7 +30,7 @@ const Wrapper = styled(Box, {
   },
 
   '& fieldset': {
-    background: '#ffffff',
+    // background: '#ffffff',
   },
 
   '.css-1xp5r68-MuiFormControl-root-MuiTextField-root': {
