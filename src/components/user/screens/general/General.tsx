@@ -10,7 +10,6 @@ type GeneralUserProps = {
     userCard: IUserCard
 }
 
-
 const General: FC<GeneralUserProps> = ({user, userCard}) => {
     return (
         <Box>
@@ -18,16 +17,16 @@ const General: FC<GeneralUserProps> = ({user, userCard}) => {
             <Box>
                 <Grid container spacing={2}>
                     <Grid size={{ xs: 12, md: 6 }}>
-                        <UserField type="date" label="Birth Date:" data={user.birthDate} />
+                        <UserField id="birthDate" type="date" label="Birth Date:" data={user.birthDate} />
                     </Grid>
                     <Grid size={{ xs: 12, md: 6 }}>
-                        <UserField label="Job Title:" data={user.jobTitle} />
+                        <UserField id="jobTitle" label="Job Title:" data={user.jobTitle} />
                     </Grid>
                     <Grid size={{ xs: 12, md: 6 }}>
-                        <UserField label="Gender:" data={user.gender} />
+                        <UserField id="gender" label="Gender:" data={user.gender} />
                     </Grid>
                     <Grid size={{ xs: 12, md: 6 }}>
-                        <UserField label="Company:" data={user.company} />
+                        <UserField id="company" label="Company:" data={user.company} />
                     </Grid>
                 </Grid>
 

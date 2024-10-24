@@ -21,11 +21,11 @@ const UserCard: FC<UserCardProps> = ({ user }) => {
                     <Divider />
                     <Box className="info">
                         <Box>
-                            <UserField isUserCard label="email" data={user.email} />
+                            <UserField id="emailCard" isUserCard label="email" data={user.email} />
                         </Box>
 
                         <Box>
-                        <UserField isUserCard label="Role" data={user.role} />
+                        <UserField id="role" isUserCard label="Role" data={user.role} />
                         </Box>
                     </Box>
                 </Box>

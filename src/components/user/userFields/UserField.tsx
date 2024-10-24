@@ -5,13 +5,14 @@ import { Box} from "@mui/material";
 import TextField from '@mui/material/TextField';
 
 type UserFieldProps = {
+  id: string;
   label: string;
   data: string;
   isUserCard?: boolean;
   type?: "text" | "number" | "radio" | "date" | "select"; 
 }
 
-const UserField: FC<UserFieldProps> = ({ label, data, isUserCard, type }) => {
+const UserField: FC<UserFieldProps> = ({ label, id,  data, isUserCard, type }) => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>(data);
 
@@ -33,7 +34,7 @@ const UserField: FC<UserFieldProps> = ({ label, data, isUserCard, type }) => {
           ) : (
             <TextField
               type={type}
-              id="outlined-basic" variant="outlined"
+              id={id} variant="outlined"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
             />

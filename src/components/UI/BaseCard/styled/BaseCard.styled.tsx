@@ -16,11 +16,24 @@ const Wrapper = styled(Box)(({ theme }) => ({
   '& p': {
     fontSize: '1.5rem',
     color: theme.palette.text.secondary,
-    marginBottom: theme.spacing(1),
+    marginBottom: theme.spacing(5),
   },
   '& img': {
     width: '100%',
   },
+
+  '& a': {
+    background: theme.palette.primary.main,
+    padding: "1rem",
+    minWidth: "64px",
+    fontSize: "1rem",
+    fontWeight: "500",
+    color: theme.palette.primary.contrastText,
+    textTransform: "uppercase",
+    textDecoration: "none",
+    borderRadius: "18px",
+    marginTop: "200px"
+  }
 }));
 
 interface WrapperProps {
