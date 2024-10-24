@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { FC, ReactNode } from 'react';
+import { forwardRef, type ComponentPropsWithoutRef} from 'react';
 import { Form } from 'react-router-dom';
 
 const mediaQuery = (breakpoint: string) => `@media (min-width: ${breakpoint})`;
@@ -18,6 +18,7 @@ const Wrapper = styled(Form)(({ theme }) => ({
   "& input": {
     display: "block",
     width: "100%",
+    marginBottom: "2rem"
   },
 
   "& > div:last-of-type": {
@@ -32,12 +33,10 @@ const Wrapper = styled(Form)(({ theme }) => ({
   },
 }));
 
-type StyledFormProps = {
-  children: ReactNode;
-};
+type StyledFormProps = ComponentPropsWithoutRef<typeof Form>;
 
-const StyledForm: FC<StyledFormProps> = ({ children }) => {
-  return <Wrapper>{children}</Wrapper>;
-};
+const StyledForm = forwardRef<HTMLFormElement, StyledFormProps>(({ children, onSubmit }, ref) => {
+  return <Wrapper ref={ref} onSubmit={onSubmit}>{children}</Wrapper>;
+});
 
 export default StyledForm;

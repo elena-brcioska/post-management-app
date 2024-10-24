@@ -4,7 +4,7 @@ import NewPostForm from "../../components/form/NewPostForm";
 import { Typography } from "@mui/material";
 
 const NewPost = () => {
-  
+
 return (<AppContent>
 
     <BaseCard>

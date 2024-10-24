@@ -4,13 +4,14 @@ import { ThemeProvider } from "@emotion/react";
 import { theme } from "../../theme/theme";
 import { Box, CssBaseline } from "@mui/material";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 
 
 const queryClient = new QueryClient();
 
 const AppLayout = () => {
   return (
-  <ThemeProvider theme={theme}>
+  <ThemeProvider theme={theme}> 
     <QueryClientProvider client={queryClient}>
       <CssBaseline />
       
@@ -18,7 +19,7 @@ const AppLayout = () => {
         <Box sx={{marginTop: "4rem"}}>
         <Outlet />
         </Box>
-
+    <ReactQueryDevtools />
     </QueryClientProvider>
   </ThemeProvider>
   );

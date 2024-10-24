@@ -26,7 +26,6 @@ const HomePage = () => {
       <FiltersContainer />
 
       <AppContent>
-        {/* <Typography color="secondary" variant="h2">Posts:</Typography> */}
         <PostsWrapper posts={posts} />
       </AppContent>
     </Box>

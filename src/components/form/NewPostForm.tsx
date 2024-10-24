@@ -1,33 +1,95 @@
 import { Box, Button, TextField } from "@mui/material";
 import StyledForm from "./styled/Form.styled.tsx";
+import { useMutation } from "@tanstack/react-query";
+import api from '../../api/posts'
+import { FormEvent, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+
+type NewPost = {
+    id: number | null;
+    title: string | null;
+    content: string | null;
+    author: string | null;
+    image: string | null;
+    date: string | null;
+}
+
+
+const createNewPost = async (newPost: NewPost) => {
+    const response = await api.post("/posts", newPost, {
+        headers: {
+            "Content-Type": "application/json",
+        }
+    });
+    return response.data;
+}
 
 const NewPostForm = () => {
-    return (<StyledForm>
 
-        <TextField color="primary" id="outlined-basic" label="Title" variant="outlined" helperText="Helper text" />
+    const ref = useRef<HTMLFormElement>(null);
+    const navigate = useNavigate();
 
-        <TextField color="primary" id="outlined-basic" label="Description" variant="outlined" helperText="Helper text" />
+    const mutation = useMutation<NewPost, unknown, NewPost>({
+        mutationFn: (newPost) => createNewPost(newPost),
+        onSuccess: (data) => {
+            console.log("success", data)
 
-        <TextField color="primary" id="outlined-basic" label="Image URL" variant="outlined" helperText="Helper text" />
+            ref?.current?.reset();
+            navigate("/");
+        },
+    })
 
-        <TextField
-            id="outlined-multiline-advanced"
-            label="Description"
-            variant="outlined"
-            multiline
-            rows={4}
-            maxRows={8}
-            placeholder="Enter a detailed description here"
-            helperText="Max 500 characters."
-            fullWidth
-        />
+    const onSubmitHandle = (e: FormEvent) => {
+        console.log("SUBMITTING");
 
-        <Box>
-        <Button variant="contained">Add Post</Button>
-        </Box>
+        e.preventDefault();
+
+        const formData = new FormData(e.target as HTMLFormElement);
+
+        const newPost = {
+            title: formData.get("title") as string,
+            image: formData.get("image") as string,
+            content: formData.get("description") as string,
+            author: formData.get("author") as string,
+            date: new Date().toISOString().slice(0, 10),
+            id: Date.now(),
+        }
+
+        mutation.mutate(newPost)
 
 
-    </StyledForm>);
+    }
+
+    return (
+        <StyledForm ref={ref} onSubmit={onSubmitHandle}>
+
+            <TextField name="title" id="title" color="primary" label="Title" variant="outlined" />
+
+            <TextField name="image" id="image" color="primary" label="Image URL" variant="outlined" />
+
+
+            <TextField
+                name="description"
+                id="description"
+                label="Description"
+                variant="outlined"
+                multiline
+                rows={4}
+                placeholder="Enter a detailed description here"
+                helperText="Max 500 characters."
+                fullWidth
+            />
+
+            <TextField name="author" id="author" color="primary" label="Author" variant="outlined" />
+
+
+
+            <Box>
+                <Button type="submit" variant="contained">Add Post</Button>
+            </Box>
+
+
+        </StyledForm>);
 };
 
 export default NewPostForm;
