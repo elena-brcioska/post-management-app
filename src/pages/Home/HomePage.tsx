@@ -3,7 +3,7 @@ import FiltersContainer from '../../components/filters/FiltersContainer';
 import AppContent from '../../layout/AppContent/AppContent';
 import PostsWrapper from '../../components/posts/PostsWrapper';
 import { useQuery } from '@tanstack/react-query';
-import api from '../../api/posts'
+import api from '../../api/api'
 
 const HomePage = () => {
 

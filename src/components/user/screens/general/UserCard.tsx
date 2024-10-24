@@ -3,23 +3,29 @@ import ProfileImage from "../../userFields/ProfileImage";
 import StyledUserCard from "../styled/UserCard.styled";
 import BaseCard from "../../../UI/BaseCard/BaseCard";
 import UserField from "../../userFields/UserField";
+import { type UserCard as IUserCard } from "../../../../pages/User/types";
+import { type FC } from "react";
 
-const UserCard = () => {
+type UserCardProps = {
+    user: IUserCard
+}
+
+const UserCard: FC<UserCardProps> = ({ user }) => {
 
     return (
         <BaseCard>
             <StyledUserCard>
                 <ProfileImage />
                 <Box>
-                    <h2>Elena Brchioska</h2>
+                    <h2>{user.name}</h2>
                     <Divider />
                     <Box className="info">
                         <Box>
-                            <UserField isUserCard label="email" data="elena@elena.com" />
+                            <UserField isUserCard label="email" data={user.email} />
                         </Box>
 
                         <Box>
-                        <UserField isUserCard label="Role" data="Administrator" />
+                        <UserField isUserCard label="Role" data={user.role} />
                         </Box>
                     </Box>
                 </Box>

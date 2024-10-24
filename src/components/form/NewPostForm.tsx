@@ -1,7 +1,7 @@
 import { Box, Button, TextField } from "@mui/material";
 import StyledForm from "./styled/Form.styled.tsx";
 import { useMutation } from "@tanstack/react-query";
-import api from '../../api/posts'
+import api from '../../api/api.ts'
 import { FormEvent, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 

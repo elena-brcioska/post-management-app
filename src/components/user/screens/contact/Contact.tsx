@@ -1,35 +1,41 @@
 import { Box } from "@mui/material";
 import Grid from '@mui/material/Grid2';
 import UserField from "../../userFields/UserField";
+import { type Contact as IContact } from "../../../../pages/User/types";
+import { type FC } from "react";
 
-const ContactInfo = () => {
+type ContactUSerProps = {
+  user: IContact
+}
+
+const ContactInfo: FC<ContactUSerProps> = ({user}) => {
   return (
     <Box>
       <h2>Contact Information</h2>
       <Grid container spacing={2}>
         <Grid size={{ xs: 12, md: 6 }}>
-          <UserField label="Email:" data="example@example.com" />
+          <UserField label="Email:" data={user.email} />
         </Grid>
         <Grid size={{ xs: 12, md: 6 }}>
-          <UserField label="Phone Number:" data="+123 456 7890" />
+          <UserField label="Phone Number:" data={user.phoneNumber} />
         </Grid>
         <Grid size={{ xs: 12, md: 6 }}>
-          <UserField label="LinkedIn:" data="linkedin.com/in/example" />
+          <UserField label="LinkedIn:" data={user.linkedin} />
         </Grid>
         <Grid size={{ xs: 12, md: 6 }}>
-          <UserField label="GitHub:" data="github.com/example" />
+          <UserField label="GitHub:" data={user.github} />
         </Grid>
         <Grid size={{ xs: 12, md: 6 }}>
-          <UserField label="Website:" data="www.example.com" />
+          <UserField label="Website:" data={user.website} />
         </Grid>
         <Grid size={{ xs: 12, md: 6 }}>
-          <UserField label="Address:" data="123 Main St, City, Country" />
+          <UserField label="Address:" data={user.address} />
         </Grid>
         <Grid size={{ xs: 12, md: 6 }}>
-          <UserField label="Twitter:" data="@example" />
+          <UserField label="Twitter:" data={user.twitter} />
         </Grid>
         <Grid size={{ xs: 12, md: 6 }}>
-          <UserField label="Facebook:" data="facebook.com/example" />
+          <UserField label="Facebook:" data={user.facebook} />
         </Grid>
       </Grid>
     </Box>

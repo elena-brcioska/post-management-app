@@ -440,5 +440,40 @@
       "author": "Test Author",
       "date": "2024-10-24"
     }
-  ]
+  ],
+  "user": {
+    "userCard": {
+      "name": "Elena Brchioska",
+      "email": "elena@elena.com",
+      "role": "Administrator"
+    },
+    "general": {
+      "birthDate": "22.10.1994",
+      "jobTitle": "Front End Developer",
+      "gender": "Female",
+      "company": "MAK-System"
+    },
+    "contact": {
+      "email": "example@example.com",
+      "phoneNumber": "+123 456 7890",
+      "linkedin": "linkedin.com/in/example",
+      "github": "github.com/example",
+      "website": "www.example.com",
+      "address": "123 Main St, City, Country",
+      "twitter": "@example",
+      "facebook": "facebook.com/example"
+    },
+    "education": {
+      "university": "Example University",
+      "college": "Example College",
+      "degree": "Bachelor of Science",
+      "fieldOfStudy": "Computer Science",
+      "graduationYear": "2022",
+      "gpa": "3.8",
+      "honors": "Summa Cum Laude",
+      "relevantCoursework": "Data Structures, Web Development",
+      "extracurricularActivities": "Coding Club, Robotics Team",
+      "certifications": "Certified Front End Developer"
+    }
+  }
 }
