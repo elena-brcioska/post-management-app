@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom";
 import api from "../../api/api";
 import { useQuery } from "@tanstack/react-query";
 import { CircularProgress } from "@mui/material";
+import SinglePost from "../../components/posts/SinglePost";
+import AppContent from "../../layout/AppContent/AppContent";
 
 const fetchPost = async (id: string) => {
   const response = await api.get("/posts/" + id);
@@ -22,11 +24,10 @@ const PostDetails = () => {
 
 
   return (
-    <div>
-      <h1>{post.title}</h1>
-      <p>{post.content}</p>
-      <p>Author: {post.author}</p>
-    </div>
+    <AppContent>
+<SinglePost post={post} />
+
+    </AppContent>
   );
 };
 

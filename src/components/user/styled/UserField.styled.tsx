@@ -29,10 +29,6 @@ const Wrapper = styled(Box, {
     height: '1rem',
   },
 
-  '& fieldset': {
-    // background: '#ffffff',
-  },
-
   "& .css-1m7itqx-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input": {
     padding: "0.5rem"
   },
