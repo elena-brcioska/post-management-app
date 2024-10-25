@@ -25,8 +25,7 @@ const PostDetails = () => {
 
   return (
     <AppContent>
-<SinglePost post={post} />
-
+      <SinglePost post={post} />
     </AppContent>
   );
 };
