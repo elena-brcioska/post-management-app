@@ -1,52 +1,86 @@
-import { useState, type FC } from "react";
+import { useState, FC } from "react";
 import StyledUserField from "../styled/UserField.styled";
 import ActionBtn from "../../UI/Buttons/ActionBtn/ActionBtn";
-import { Box} from "@mui/material";
-import TextField from '@mui/material/TextField';
+import { Box, TextField, FormControl, InputLabel, Select, MenuItem, RadioGroup, FormControlLabel, Radio } from "@mui/material";
 
 type UserFieldProps = {
   id: string;
-  label: string;
+  label?: string;
   data: string;
   isUserCard?: boolean;
-  type?: "text" | "number" | "radio" | "date" | "select"; 
-}
+  type?: "text" | "number" | "radio" | "date" | "select";
+  options?: { value: string; label: string }[];  // For radio or select options
+  onSave: (id: string, value: string) => void;
+};
 
-const UserField: FC<UserFieldProps> = ({ label, id,  data, isUserCard, type }) => {
+const UserField: FC<UserFieldProps> = ({ label, id, data, isUserCard, type, options, onSave }) => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>(data);
 
   const onClickEditHandler = () => {
     setIsEdit(true);
-  }
+  };
 
   const onClickSaveHandler = () => {
     setIsEdit(false);
-  }
+    onSave(id, inputValue);
+  };
 
   return (
     <StyledUserField isUserCard={isUserCard}>
       <p className="label">{label}</p>
       <Box sx={{ position: "relative" }}>
-        {
-          !isEdit ? (
-            <p className="userData">{data}</p>
+        {!isEdit ? (
+          <p className="userData">{data}</p>
+        ) : (
+          type === "radio" && options ? (
+            <FormControl component="fieldset">
+              <RadioGroup
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+              >
+                {options.map((option) => (
+                  <FormControlLabel
+                    key={option.value}
+                    value={option.value}
+                    control={<Radio />}
+                    label={option.label}
+                  />
+                ))}
+              </RadioGroup>
+            </FormControl>
+          ) : type === "select" && options ? (
+            <FormControl fullWidth variant="outlined">
+              <InputLabel id={`${id}-label`}>{label}</InputLabel>
+              <Select
+                labelId={`${id}-label`}
+                id={id}
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                label={label}
+              >
+                {options.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           ) : (
             <TextField
               type={type}
-              id={id} variant="outlined"
+              id={id}
+              variant="outlined"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
             />
           )
-        }
+        )}
 
         <ActionBtn onClick={!isEdit ? onClickEditHandler : onClickSaveHandler}>
           {!isEdit ? "Edit" : "Save"}
         </ActionBtn>
       </Box>
-
-      
     </StyledUserField>
   );
 };

@@ -444,19 +444,19 @@
   "user": {
     "userCard": {
       "name": "Elena Brchioska",
-      "email": "elena@elena.com",
-      "role": "Administrator"
+      "role": "Administrator",
+      "emailCard": "elena@elena.com"
     },
     "general": {
-      "birthDate": "22.10.1994",
+      "birthDate": "1993-10-23",
       "jobTitle": "Front End Developer",
       "gender": "Female",
       "company": "MAK-System"
     },
     "contact": {
-      "email": "example@example.com",
+      "email": "test@example.com",
       "phoneNumber": "+123 456 7890",
-      "linkedin": "linkedin.com/in/example",
+      "linkedin": "linkedin.com/in/example2",
       "github": "github.com/example",
       "website": "www.example.com",
       "address": "123 Main St, City, Country",
@@ -469,7 +469,7 @@
       "degree": "Bachelor of Science",
       "fieldOfStudy": "Computer Science",
       "graduationYear": "2022",
-      "gpa": "3.8",
+      "gpa": "3.6",
       "honors": "Summa Cum Laude",
       "relevantCoursework": "Data Structures, Web Development",
       "extracurricularActivities": "Coding Club, Robotics Team",

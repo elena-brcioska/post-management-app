@@ -33,9 +33,25 @@ const Wrapper = styled(Box, {
     // background: '#ffffff',
   },
 
+  "& .css-1m7itqx-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input": {
+    padding: "0.5rem"
+  },
+
+  "& input[type=date]": {
+    paddingRight: "60px"
+  },
+
+  "& input[type=number]": {
+    paddingRight: "60px"
+  },
+
   '.css-1xp5r68-MuiFormControl-root-MuiTextField-root': {
     width: '100%',
   },
+
+  "& button": {
+    right: isUserCard ? "-3rem" : "1rem"
+  }
 
 }));
 

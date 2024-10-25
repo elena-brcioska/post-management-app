@@ -16,7 +16,9 @@ const Wrapper = styled(Button)(() => ({
     transform: "translateY(-50%)" 
 }))
 
-type WrapperProps = ComponentPropsWithoutRef<"button">
+type WrapperProps = {
+isUserCard?: boolean
+} & ComponentPropsWithoutRef<"button">
 
 const StyledActionButton: FC<WrapperProps> = ({children, onClick}) => {
   return <Wrapper onClick={onClick}>{children}</Wrapper>;

@@ -1,6 +1,6 @@
 export interface UserCard {
     name: string;
-    email: string;
+    emailCard: string;
     role: string;
   }
   
