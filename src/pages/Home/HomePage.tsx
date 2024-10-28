@@ -3,19 +3,13 @@ import FiltersContainer from '../../components/filters/FiltersContainer';
 import AppContent from '../../layout/AppContent/AppContent';
 import PostsWrapper from '../../components/posts/PostsWrapper';
 import { useQuery } from '@tanstack/react-query';
-import api from '../../api/api'
+import { fetchPosts } from '../../endpoints/posts';
 
 const HomePage = () => {
 
-  const fetchFn = async () => {
-    const response = await api.get('/posts');    
-    return response.data;
-
-  }
-
   const { data: posts, isLoading, isError } = useQuery({
     queryKey: ["posts"],
-    queryFn: () => fetchFn(),
+    queryFn: () => fetchPosts(),
   })
 
   if (isLoading) return <CircularProgress />;

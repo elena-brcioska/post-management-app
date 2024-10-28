@@ -8,6 +8,7 @@ export type PostObject = {
     content: string;
     author: string;
     image: string;
+    date: string;
   }
 
   type PostsWrapperProps = {

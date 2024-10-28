@@ -1,27 +1,17 @@
 import { Box, Button, TextField } from "@mui/material";
 import StyledForm from "./styled/Form.styled.tsx";
 import { useMutation } from "@tanstack/react-query";
-import api from '../../api/api.ts'
 import { FormEvent, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { createNewPost } from "../../endpoints/posts/index.ts";
 
-type NewPost = {
+export type NewPost = {
     id: number | null;
     title: string | null;
     content: string | null;
     author: string | null;
     image: string | null;
     date: string | null;
-}
-
-
-const createNewPost = async (newPost: NewPost) => {
-    const response = await api.post("/posts", newPost, {
-        headers: {
-            "Content-Type": "application/json",
-        }
-    });
-    return response.data;
 }
 
 const NewPostForm = () => {
@@ -31,8 +21,7 @@ const NewPostForm = () => {
 
     const mutation = useMutation<NewPost, unknown, NewPost>({
         mutationFn: (newPost) => createNewPost(newPost),
-        onSuccess: (data) => {
-            console.log("success", data)
+        onSuccess: () => {
 
             ref?.current?.reset();
             navigate("/");
@@ -40,7 +29,6 @@ const NewPostForm = () => {
     })
 
     const onSubmitHandle = (e: FormEvent) => {
-        console.log("SUBMITTING");
 
         e.preventDefault();
 
