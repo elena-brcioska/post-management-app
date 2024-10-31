@@ -1,15 +1,11 @@
 import { Box } from "@mui/material";
 import Grid from '@mui/material/Grid2';
 import UserField from "../../userFields/UserField";
-import { type Contact as IContact } from "../../../../pages/User/types";
 import { useState, type FC } from "react";
+import { type IContact, type IContactUserProps } from "../../types";
 
-type ContactUserProps = {
-  user: IContact;
-  onUpdate: (update: IContact) => void
-}
 
-const ContactInfo: FC<ContactUserProps> = ({user, onUpdate}) => {
+const ContactInfo: FC<IContactUserProps> = ({user, onUpdate}) => {
 
   const [contact, setContact] = useState<IContact>(user);
 

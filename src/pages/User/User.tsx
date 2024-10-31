@@ -7,7 +7,7 @@ import Contact from "../../components/user/screens/contact/Contact";
 import { useSearchParams } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import api from '../../api/api'
-import { Education as IEducation, Contact as IContact, General as IGeneral, User as IUser, UserCard as IUserCard } from "./types";
+import { IContact, IEducation, IGeneral, IUser, IUserCard } from "../../components/user/types";
 
 type UpdateType = IUser;
 

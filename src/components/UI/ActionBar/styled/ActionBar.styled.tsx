@@ -6,21 +6,17 @@ const mediaQuery = (breakpoint: string) => `@media (min-width: ${breakpoint})`;
 
 
 const Wrapper = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(3),
-  backgroundColor: theme.palette.background.default,
+  padding: theme.spacing(2),
+  backgroundColor: theme.palette.primary.light,
   borderRadius: "0",
   boxShadow: theme.shadows[5],
-
+  display: "flex",
+  justifyContent: "space-between",
+  margin: "auto",
   position: "fixed",
   width: "100%",
   top: "4rem",
   zIndex: 1,
-
-  '& p': {
-    fontSize: '1.5rem',
-    color: theme.palette.text.secondary,
-    marginBottom: theme.spacing(1),
-  },
 
   '& a': {
     background: theme.palette.primary.main,
@@ -36,8 +32,13 @@ const Wrapper = styled(Box)(({ theme }) => ({
 
   "& div.filters": {
     display: "flex",
-    justifyContent: "space-between",
-    margin: "auto"
+    gap: "24px",
+    alignItems: "center"
+  },
+
+  "& div.new-post": {
+    display: "flex",
+    alignItems: "center"
   },
 
   [mediaQuery('2000px')]: {
@@ -52,8 +53,8 @@ interface WrapperProps {
   children: ReactNode;
 }
 
-const StyledFiltersContainer: React.FC<WrapperProps> = ({ children }) => {
+const StyledActionBar: React.FC<WrapperProps> = ({ children }) => {
   return <Wrapper>{children}</Wrapper>;
 };
 
-export default StyledFiltersContainer;
+export default StyledActionBar;

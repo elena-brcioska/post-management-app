@@ -2,15 +2,11 @@ import { type FC, FormEvent, useEffect, useRef, useState } from "react";
 import StyledForm from "../form/styled/Form.styled";
 import { Box, Button, TextField } from "@mui/material";
 import CustomModal, { ModalHandle } from "../UI/Modal/CustomModal";
-import { PostObject } from "../posts/PostsWrapper";
+import { PostObject } from "./PostsWrapper";
+import { IEditPostProps } from "./types";
 
-type EditPostProps = {
-    onDone: () => void;
-    onSave: (updatedPost: PostObject) => void;
-    post: PostObject;
-}
 
-const EditPost: FC<EditPostProps> = ({ onDone, onSave, post }) => {
+const EditPost: FC<IEditPostProps> = ({ onDone, onSave, post }) => {
     const modalRef = useRef<ModalHandle>(null);
 
     const [formData, setFormData] = useState<PostObject>(post);

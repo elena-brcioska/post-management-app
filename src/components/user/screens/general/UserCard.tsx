@@ -3,15 +3,11 @@ import ProfileImage from "../../userFields/ProfileImage";
 import StyledUserCard from "../styled/UserCard.styled";
 import BaseCard from "../../../UI/BaseCard/BaseCard";
 import UserField from "../../userFields/UserField";
-import { type UserCard as IUserCard } from "../../../../pages/User/types";
 import { useState, type FC } from "react";
+import { type IUserCard, type IUserCardProps } from "../../types";
 
-type UserCardProps = {
-    user: IUserCard,
-    onUpdate: (update: IUserCard) => void
-}
 
-const UserCard: FC<UserCardProps> = ({ user, onUpdate }) => {
+const UserCard: FC<IUserCardProps> = ({ user, onUpdate }) => {
 
     const [card, setCard] = useState<IUserCard>(user);
 

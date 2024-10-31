@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import ResponsiveAppBar from "./AppBar";
+import ResponsiveAppBar from "../AppBar";
 import { Box } from '@mui/material';
 import { type ReactNode, type FC } from 'react';
 

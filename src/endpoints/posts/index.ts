@@ -1,15 +1,27 @@
 
 import api from "../../api/api";
-import { NewPost } from "../../components/form/NewPostForm";
-import { PostObject } from "../../components/posts/PostsWrapper";
+import { type INewPost } from "../../components/form/types";
+import { type IPostObject } from "../../components/posts/types";
 
-export const fetchPosts = async () => {
-    const response = await api.get('/posts');    
+export const fetchPosts = async (searchQuery?: string, selectedAuthor?: string) => {
+    const params: { [key: string]: string } = {};
+
+    if (searchQuery) {
+        params.title_like = searchQuery;
+    }
+
+    if (selectedAuthor) {
+        params.author_like = selectedAuthor;
+    }
+
+    const response = await api.get("/posts", {
+        params,
+    });
+
     return response.data;
+};
 
-  }
-
-export const createNewPost = async (newPost: NewPost) => {
+export const createNewPost = async (newPost: INewPost) => {
     const response = await api.post("/posts", newPost, {
         headers: {
             "Content-Type": "application/json",
@@ -23,7 +35,15 @@ export const fetchPost = async (id: string) => {
     return response.data;
 };
 
-export const editPost = async (postId: string, post: PostObject) => {
-    const response = await api.patch("/posts/" + postId, post);
+export const editPost = async (id: string, post: IPostObject) => {
+    const response = await api.patch("/posts/" + id, post);
     return response.data;
 }
+
+
+export const deletePost = async (id: string) => {
+    const response = await api.delete("/posts/" + id);
+        return response.data
+}
+
+

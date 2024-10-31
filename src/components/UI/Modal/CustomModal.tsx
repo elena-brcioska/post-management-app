@@ -1,17 +1,9 @@
-import { forwardRef, useImperativeHandle, useRef, type ReactNode } from "react";
+import { forwardRef, useImperativeHandle, useRef } from "react";
 import { createPortal } from "react-dom";
 import StyledModal from "./styled/CustomModal.styled";
+import { IModalHandle, IModalProps } from "./types";
 
-export type ModalHandle = {
-  open: () => void;
-};
-
-type ModalProps = {
-  children: ReactNode;
-  onClose: () => void;
-};
-
-const CustomModal = forwardRef<ModalHandle, ModalProps>(({ children, onClose }, ref) => {
+const CustomModal = forwardRef<IModalHandle, IModalProps>(({ children, onClose }, ref) => {
   const dialog = useRef<HTMLDialogElement>(null);
 
   useImperativeHandle(ref, () => ({

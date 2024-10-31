@@ -1,12 +1,10 @@
-import { FC, type ReactNode } from "react";
+import { type FC } from "react";
 import StyledAppContent from "./AppContent.styled";
+import { IAppContentProps } from "../types";
 
-type AppContentProps = {
-    children: ReactNode,
-    isUser?: boolean
-}
 
-const AppContent: FC<AppContentProps> = ({children, isUser}) => {
+
+const AppContent: FC<IAppContentProps> = ({children, isUser}) => {
   return <StyledAppContent isUser={isUser}>{children}</StyledAppContent>;
 };
 

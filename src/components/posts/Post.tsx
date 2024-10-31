@@ -1,13 +1,9 @@
 import BaseCard from "../UI/BaseCard/BaseCard";
-import { type FC } from "react";
-import { PostObject } from "./PostsWrapper";
 import { Link } from "react-router-dom";
+import { type FC } from "react";
+import { type IPostProps } from "./types";
 
-type PostProps = {
-  post: PostObject;
-}
-
-const Post: FC<PostProps> = ({post}) => {
+const Post: FC<IPostProps> = ({post}) => {
   return <BaseCard>
     <h2>{post.title}</h2>
     <img src={post.image} alt="Random Image" />

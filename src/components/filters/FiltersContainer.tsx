@@ -1,21 +1,33 @@
-import { Box } from "@mui/material";
-import StyledFiltersContainer from "./styled/FiltersContainer.styled";
-import { Link } from "react-router-dom";
+import { Box, Typography } from "@mui/material";
+import SortButton from "./SortButton";
+import StyledFiltersContainer from "./styled/FiltersContailer.styled";
+import SelectFilter from "./SelectFilter";
+import { FC, memo, useMemo } from "react";
+import useAuthors from "../../hooks/posts/useAuthors";
+import { IFiltersContainer } from "./types";
 
-const FiltersContainer = () => {
-  return <StyledFiltersContainer>
-    <Box className="filters">
-    <Box>
-    <h2>This is filters</h2>
+const FiltersContainer: FC<IFiltersContainer> = memo(({ setSelectedAuthor, handleSort, selectedAuthor }) => {
+    console.log("FiltersContainer rendered");
 
-    </Box>
+    const { authors, isLoading, isError } = useAuthors();
 
-    <Box>
-    <Link to="new">Add New Post</Link>
-    </Box>
-    </Box>
+    const uniqueAuthors = useMemo(() => {
+        return authors ? Array.from(new Set(authors)) : [];
+    }, [authors]);
 
-  </StyledFiltersContainer>;
-};
+    if (isLoading) return <div>Loading authors...</div>;
+    if (isError) return <div>Error loading authors</div>;
+
+    return (
+        <StyledFiltersContainer>
+            <Box className="sort">
+                <Typography variant="subtitle1" component="p">Sort By Date: </Typography>
+                <SortButton handleSort={handleSort} />
+            </Box>
+
+            <SelectFilter authors={uniqueAuthors} setSelectedAuthor={setSelectedAuthor} selectedAuthor={selectedAuthor} />
+        </StyledFiltersContainer>
+    );
+});
 
 export default FiltersContainer;

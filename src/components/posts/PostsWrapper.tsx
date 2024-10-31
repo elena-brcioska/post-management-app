@@ -1,30 +1,32 @@
-import { FC } from "react";
+import { useEffect, useState, type FC } from "react";
 import Post from "./Post";
 import StyledPostsWrapper from "./styled/PostsWrapper.styled";
+import { sortPostsByDate } from "../../util/sortByDate";
+import { IPostObject, IPostsWrapperProps } from "./types";
 
-export type PostObject = {
-    id: number;
-    title: string;
-    content: string;
-    author: string;
-    image: string;
-    date: string;
-  }
+const PostsWrapper: FC<IPostsWrapperProps> = ({ posts, sortOrder }) => {
+  const [sortedPosts, setSortedPosts] = useState<IPostObject[]>([]);
 
-  type PostsWrapperProps = {
-    posts: PostObject[]
-  }
+  useEffect(() => {
+    if (posts) {
+      const sorted = sortPostsByDate(posts, sortOrder);
+      setSortedPosts(sorted);
+    }
+  }, [posts, sortOrder]);
 
-const PostsWrapper: FC<PostsWrapperProps> = ({posts}) => {
-    
-    return <StyledPostsWrapper>
-        <ul>
+  return (
+    <StyledPostsWrapper>
+      <ul>
         {
-            posts.map((post) => <li key={post.id}><Post post={post} /></li>)
+          sortedPosts.map((post) => (
+            <li key={post.id}>
+              <Post post={post} />
+            </li>
+          ))
         }
-        </ul>
-
-    </StyledPostsWrapper>;
+      </ul>
+    </StyledPostsWrapper>
+  );
 };
 
 export default PostsWrapper;

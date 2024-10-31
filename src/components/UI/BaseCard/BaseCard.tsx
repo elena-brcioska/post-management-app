@@ -1,9 +1,7 @@
-import { type FC, type ReactNode } from "react";
+import { ComponentPropsWithoutRef, type FC} from "react";
 import StyledBaseCard from "./styled/BaseCard.styled";
 
-type BaseCardProps = {
-    children: ReactNode;
-}
+type BaseCardProps = ComponentPropsWithoutRef<'div'>
 
 const BaseCard: FC<BaseCardProps> = ({children}) => {
   return <StyledBaseCard>

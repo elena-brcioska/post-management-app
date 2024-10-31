@@ -2,16 +2,11 @@ import { Box } from "@mui/material";
 import UserCard from "./UserCard";
 import UserField from "../../userFields/UserField";
 import Grid from '@mui/material/Grid2';
-import { type General as IGeneral, type UserCard as IUserCard } from "../../../../pages/User/types";
 import { useState, type FC } from "react";
+import {type IGeneral, type IGeneralUserProps } from "../../types";
 
-type GeneralUserProps = {
-    user: IGeneral,
-    userCard: IUserCard,
-    onUpdate: (update: IGeneral | IUserCard) => void
-}
 
-const General: FC<GeneralUserProps> = ({ user, userCard, onUpdate }) => {
+const General: FC<IGeneralUserProps> = ({ user, userCard, onUpdate }) => {
 
     const [general, setGeneral] = useState<IGeneral>(user);
 

@@ -1,15 +1,11 @@
 import { Box } from "@mui/material";
 import Grid from '@mui/material/Grid2';
 import UserField from "../../userFields/UserField";
-import { type Education as IEducation } from "../../../../pages/User/types";
 import { useState, type FC } from "react";
+import { type IEducation, type IEducationUserProps } from "../../types";
 
-type EducationUserProps = {
-  user: IEducation;
-  onUpdate: (update: IEducation) => void
-}
 
-const Education: FC<EducationUserProps> = ({ user, onUpdate }) => {
+const Education: FC<IEducationUserProps> = ({ user, onUpdate }) => {
 
   const [education, setEducation] = useState<IEducation>(user);
 

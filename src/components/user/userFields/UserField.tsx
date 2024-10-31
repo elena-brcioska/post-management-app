@@ -1,19 +1,12 @@
-import { useState, FC } from "react";
+import { useState, type FC } from "react";
 import StyledUserField from "../styled/UserField.styled";
 import ActionBtn from "../../UI/Buttons/ActionBtn/ActionBtn";
 import { Box, TextField, FormControl, InputLabel, Select, MenuItem, RadioGroup, FormControlLabel, Radio } from "@mui/material";
+import { type IUserFieldProps } from "../types";
 
-type UserFieldProps = {
-  id: string;
-  label?: string;
-  data: string;
-  isUserCard?: boolean;
-  type?: "text" | "number" | "radio" | "date" | "select";
-  options?: { value: string; label: string }[];  // For radio or select options
-  onSave: (id: string, value: string) => void;
-};
 
-const UserField: FC<UserFieldProps> = ({ label, id, data, isUserCard, type, options, onSave }) => {
+
+const UserField: FC<IUserFieldProps> = ({ label, id, data, isUserCard, type, options, onSave }) => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>(data);
 

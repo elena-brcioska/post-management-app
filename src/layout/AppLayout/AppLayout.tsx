@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "../../components/UI/Navigation/Navbar";
+import Navbar from "../../components/UI/Navigation/styled/Navbar";
 import { ThemeProvider } from "@emotion/react";
 import { theme } from "../../theme/theme";
 import { Box, CssBaseline } from "@mui/material";

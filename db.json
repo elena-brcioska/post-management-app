@@ -415,30 +415,6 @@
       "content": "This is the second test description",
       "author": "Elena",
       "date": "2024-10-24"
-    },
-    {
-      "id": "1729772733658",
-      "title": "Test test",
-      "image": "https://picsum.photos/600/400",
-      "content": "Test test test test",
-      "author": "Elena Brchioska",
-      "date": "2024-10-24"
-    },
-    {
-      "id": "1729772900690",
-      "title": "Test 3",
-      "image": "https://fastly.picsum.photos/id/95/600/400.jpg?hmac=V93SD8TM_4rcfsb_w3bz9IoS-NkOtWwsH4mIfvqHvMM",
-      "content": "Test test test test 3",
-      "author": "Elena Brchioska",
-      "date": "2024-10-24"
-    },
-    {
-      "id": "1729773411129",
-      "title": "Test 4",
-      "image": "https://fastly.picsum.photos/id/95/600/400.jpg?hmac=V93SD8TM_4rcfsb_w3bz9IoS-NkOtWwsH4mIfvqHvMM",
-      "content": "Test 4 description",
-      "author": "Test Author",
-      "date": "2024-10-24"
     }
   ],
   "user": {

@@ -1,16 +1,17 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { CircularProgress } from "@mui/material";
 import SinglePost from "../../components/posts/SinglePost";
 import AppContent from "../../layout/AppContent/AppContent";
-import EditPost from "../../components/editPost/EditPost";
+import EditPost from "../../components/posts/EditPost";
 import { useState } from "react";
-import { editPost, fetchPost } from "../../endpoints/posts";
-import { PostObject } from "../../components/posts/PostsWrapper";
+import { deletePost, editPost, fetchPost } from "../../endpoints/posts";
+import { IPostObject } from "../../components/posts/types";
 
 const PostDetails = () => {
     const { id } = useParams();
     const [isEdit, setIsEdit] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     const client = useQueryClient()
 
@@ -22,14 +23,14 @@ const PostDetails = () => {
         setIsEdit(false);
     };
 
-    const { data: post, isLoading, isError } = useQuery<PostObject>({
+    const { data: post, isLoading, isError } = useQuery<IPostObject>({
         queryKey: ["post", id],
         queryFn: () => fetchPost(id!),
         enabled: !!id,
     });
 
     const onEdit = useMutation({
-        mutationFn: (updatedPost: PostObject) => editPost(id!, updatedPost),
+        mutationFn: (updatedPost: IPostObject) => editPost(id!, updatedPost),
         onSuccess: () => {
             handleCloseEdit()
             client.invalidateQueries({ queryKey: ["post", id] })
@@ -37,9 +38,22 @@ const PostDetails = () => {
 
     });
 
-    const onSave = (updatedPost: PostObject) => {
+    const onDelete = useMutation<IPostObject, unknown>({
+        mutationFn: () => deletePost(id!),
+        onSuccess: () => {
+            client.invalidateQueries({queryKey: ["posts"]});
+            navigate("/")     
+        }
+    })
+
+    const onSave = (updatedPost: IPostObject) => {
         onEdit.mutate(updatedPost);
     };
+
+    const handleDeletePost = () => {
+
+        onDelete.mutate()
+    }   
 
     if (isLoading) return <CircularProgress />;
 
@@ -50,7 +64,7 @@ const PostDetails = () => {
             {isEdit && post && (
                 <EditPost post={post} onSave={onSave} onDone={handleCloseEdit} />
             )}
-            {post && <SinglePost editPost={handleEditPost} post={post} />}
+            {post && <SinglePost onDelete={handleDeletePost} editPost={handleEditPost} post={post} />}
         </AppContent>
     );
 };

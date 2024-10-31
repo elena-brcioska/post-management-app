@@ -4,15 +4,9 @@ import { useMutation } from "@tanstack/react-query";
 import { FormEvent, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { createNewPost } from "../../endpoints/posts/index.ts";
+import { type NewPost } from "./types/index.ts";
 
-export type NewPost = {
-    id: number | null;
-    title: string | null;
-    content: string | null;
-    author: string | null;
-    image: string | null;
-    date: string | null;
-}
+
 
 const NewPostForm = () => {
 
