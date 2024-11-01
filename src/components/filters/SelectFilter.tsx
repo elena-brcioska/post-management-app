@@ -1,15 +1,13 @@
 import { Box, FormControl, InputLabel, MenuItem, Select, type SelectChangeEvent } from '@mui/material';
-import { memo, type FC } from 'react';
+import { FC } from 'react';
 import { type ISelectFilter } from './types';
 
-const SelectFilter: FC<ISelectFilter> = memo(({ authors, setSelectedAuthor, selectedAuthor }) => {
-  console.log("SelectFilter rendered");
-
+const SelectFilter: FC<ISelectFilter> = ({ authors, setSelectedAuthor, selectedAuthor }) => {
 
 
   const handleChange = (event: SelectChangeEvent<string>) => {
     const value = event.target.value as string;
-    setSelectedAuthor(value);
+    setSelectedAuthor(value); 
   };
 
   return (
@@ -19,10 +17,16 @@ const SelectFilter: FC<ISelectFilter> = memo(({ authors, setSelectedAuthor, sele
         <Select
           labelId="author-select-label"
           id="author-select"
-          value={selectedAuthor}
+          value={selectedAuthor || ""}
           label="Author"
           onChange={handleChange}
         >
+          <MenuItem value="" disabled>
+            Select an Author
+          </MenuItem>
+          <MenuItem value="">
+            All authors
+          </MenuItem>
           {authors.map((name) => (
             <MenuItem key={name} value={name}>
               {name}
@@ -32,8 +36,6 @@ const SelectFilter: FC<ISelectFilter> = memo(({ authors, setSelectedAuthor, sele
       </FormControl>
     </Box>
   );
-},(prevProps, nextProps) => {
-  return JSON.stringify(prevProps.authors) === JSON.stringify(nextProps.authors);
-});
+};
 
 export default SelectFilter;

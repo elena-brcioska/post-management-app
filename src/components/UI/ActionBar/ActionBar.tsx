@@ -7,7 +7,6 @@ import { memo, type FC } from "react";
 import { IActionBar } from "./types";
 
 const ActionBar: FC<IActionBar> = memo(({ searchValue, setValue, setSelectedAuthor, selectedAuthor, handleSort }) => {
-  console.log("ActionBar rendered");
 
   return (
     <StyledActionBar>

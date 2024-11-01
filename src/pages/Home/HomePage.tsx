@@ -1,28 +1,26 @@
 import { Box, CircularProgress, Typography } from '@mui/material';
 import AppContent from '../../layout/AppContent/AppContent';
 import PostsWrapper from '../../components/posts/PostsWrapper';
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { fetchPosts } from '../../endpoints/posts';
 import ActionBar from '../../components/UI/ActionBar/ActionBar';
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import Header from '../../components/UI/Header/Header';
+import { IPostObject } from '../../components/posts/types';
 
 const HomePage = () => {
-
-  console.log("HomePage rendered");
-
-  const [searchValue, setSearchValue] = useState<string>("");
+  const [searchValue, setSearchValue] = useState<string>('');
   const [debouncedSearchValue, setDebouncedSearchValue] = useState<string>(searchValue);
-  const [selectedAuthor, setSelectedAuthor] = useState<string>("");
-  const [ascending, setAscending] = useState(false);
+  const [selectedAuthor, setSelectedAuthor] = useState<string>('');
+  const [ascending, setAscending] = useState<boolean>(false);
 
   const handleSort = useCallback((val: boolean) => {
     setAscending(val);
-    console.log(ascending);
-  }, [ascending]);
+  }, []);
 
   const handleSearchChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value);
-  }, [setSearchValue]);
+  }, []);
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -35,13 +33,45 @@ const HomePage = () => {
 
   const memoizedSetSelectedAuthor = useCallback((author: string) => {
     setSelectedAuthor(author);
-  }, [setSelectedAuthor]);
+  }, []);
 
-  const { data: posts, isLoading, isError } = useQuery({
-    queryKey: ["posts", debouncedSearchValue, selectedAuthor],
-    queryFn: () => fetchPosts(debouncedSearchValue, selectedAuthor),
-    enabled: true,
-  });
+  const {
+    data,
+    isLoading,
+    isError,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+} = useInfiniteQuery<{
+    posts: IPostObject[];
+    totalCount: number;
+}>({
+    queryKey: ['posts', debouncedSearchValue, selectedAuthor, ascending],
+    queryFn: ({ pageParam = 1 }) => fetchPosts(debouncedSearchValue, selectedAuthor, pageParam as number, 5, ascending ? 'asc' : 'desc'),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+        const totalFetchedPosts = allPages.reduce((sum, page) => sum + (page.posts?.length || 0), 0);
+        return totalFetchedPosts < lastPage.totalCount ? allPages.length + 1 : undefined;
+    },
+});
+
+console.log(data)
+
+  const handleScroll = () => {
+    const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+    if (scrollHeight - scrollTop <= clientHeight + 50 && hasNextPage) {
+      fetchNextPage();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [fetchNextPage, hasNextPage]);
+
+  const posts = data?.pages?.flatMap((page) => page.posts) || [];
 
   if (isLoading) return <CircularProgress />;
   if (isError) return <Typography color="error">Error fetching posts</Typography>;
@@ -56,7 +86,10 @@ const HomePage = () => {
         setValue={handleSearchChange}
       />
       <AppContent>
+        <Header searchQuery={debouncedSearchValue} selectedAuthor={selectedAuthor} />
         <PostsWrapper sortOrder={ascending} posts={posts} />
+        {hasNextPage && isFetchingNextPage && (<CircularProgress />)
+        }
       </AppContent>
     </Box>
   );

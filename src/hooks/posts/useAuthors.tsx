@@ -3,17 +3,26 @@ import { fetchPosts } from "../../endpoints/posts";
 import { IPostObject } from "../../components/posts/types";
 
 const useAuthors = () => {
-
-    console.log("useAuthors triggered");
-
-    const { data, isLoading, isError } = useQuery<IPostObject[]>({
+    const { data, isLoading, isError } = useQuery<{
+        posts: IPostObject[];
+        totalCount: number;
+    }>({
         queryKey: ["authors"],
         queryFn: () => fetchPosts(),
         staleTime: 1000 * 60 * 5,
         enabled: true,
     });
 
-    const authors = data ? Array.from(new Set(data.map((post) => post.author))) : [];
+    console.log(data, "USEAUTHORS DATA");
+    console.log(data?.posts, "USEAUTHORS DATA POSTS");
+    
+    
+
+    const authors: string[] = data?.posts 
+        ? Array.from(new Set(data.posts.map((post) => post.author))) 
+        : [];
+
+        console.log(authors, "USEAUTHORS DATA AUTHORS");
 
     return { authors, isLoading, isError };
 };

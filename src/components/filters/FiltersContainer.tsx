@@ -7,7 +7,6 @@ import useAuthors from "../../hooks/posts/useAuthors";
 import { IFiltersContainer } from "./types";
 
 const FiltersContainer: FC<IFiltersContainer> = memo(({ setSelectedAuthor, handleSort, selectedAuthor }) => {
-    console.log("FiltersContainer rendered");
 
     const { authors, isLoading, isError } = useAuthors();
 

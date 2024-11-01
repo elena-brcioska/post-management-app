@@ -4,7 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 import { FormEvent, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { createNewPost } from "../../endpoints/posts/index.ts";
-import { type NewPost } from "./types/index.ts";
+import { type INewPost } from "./types/index.ts";
 
 
 
@@ -13,7 +13,7 @@ const NewPostForm = () => {
     const ref = useRef<HTMLFormElement>(null);
     const navigate = useNavigate();
 
-    const mutation = useMutation<NewPost, unknown, NewPost>({
+    const mutation = useMutation<INewPost, unknown, INewPost>({
         mutationFn: (newPost) => createNewPost(newPost),
         onSuccess: () => {
 

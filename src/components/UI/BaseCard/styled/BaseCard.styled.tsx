@@ -21,7 +21,6 @@ const Wrapper = styled(Box)(({ theme }) => ({
   '& img': {
     width: '100%',
   },
-
   '& a': {
     background: theme.palette.primary.main,
     padding: "1rem",

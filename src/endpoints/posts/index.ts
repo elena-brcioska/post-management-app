@@ -3,8 +3,19 @@ import api from "../../api/api";
 import { type INewPost } from "../../components/form/types";
 import { type IPostObject } from "../../components/posts/types";
 
-export const fetchPosts = async (searchQuery?: string, selectedAuthor?: string) => {
-    const params: { [key: string]: string } = {};
+export const fetchPosts = async (
+    searchQuery: string = '',
+    selectedAuthor: string = '',
+    page: number = 1,
+    limit: number = 10,
+    sortOrder: 'asc' | 'desc' = 'desc'
+) => {
+    const params: { [key: string]: string | number | undefined  } = {
+        _page: page,
+        _limit: limit,
+        _sort: 'date',
+        _order: sortOrder,
+    };
 
     if (searchQuery) {
         params.title_like = searchQuery;
@@ -18,8 +29,17 @@ export const fetchPosts = async (searchQuery?: string, selectedAuthor?: string) 
         params,
     });
 
-    return response.data;
+    const totalCount = parseInt(response.headers["x-total-count"], 10);
+    
+    console.log('Response Data:', response.data);
+    console.log('Total Count:', response.headers['x-total-count']);
+    
+    return {
+        posts: response.data,
+        totalCount,
+    };
 };
+
 
 export const createNewPost = async (newPost: INewPost) => {
     const response = await api.post("/posts", newPost, {
