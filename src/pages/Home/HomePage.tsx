@@ -72,6 +72,7 @@ console.log(data)
   }, [fetchNextPage, hasNextPage]);
 
   const posts = data?.pages?.flatMap((page) => page.posts) || [];
+  const totalCount = data?.pages[0]?.totalCount || 0;
 
   if (isLoading) return <CircularProgress />;
   if (isError) return <Typography color="error">Error fetching posts</Typography>;
@@ -86,7 +87,7 @@ console.log(data)
         setValue={handleSearchChange}
       />
       <AppContent>
-        <Header searchQuery={debouncedSearchValue} selectedAuthor={selectedAuthor} />
+        <Header totalCount={totalCount} searchQuery={debouncedSearchValue} selectedAuthor={selectedAuthor} />
         <PostsWrapper sortOrder={ascending} posts={posts} />
         {hasNextPage && isFetchingNextPage && (<CircularProgress />)
         }

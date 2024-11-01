@@ -21,6 +21,10 @@ const Wrapper = styled(Form)(({ theme }) => ({
     marginBottom: "2rem"
   },
 
+    "& .textbox": {
+      marginBottom: "2rem",
+    },
+
   "& > div:last-of-type": {
     display: "flex",
     justifyContent: "flex-end",

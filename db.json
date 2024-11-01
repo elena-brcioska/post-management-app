@@ -407,6 +407,22 @@
       "content": "This is the second test description",
       "author": "Elena",
       "date": "2024-10-24"
+    },
+    {
+      "title": "This is a test post",
+      "image": "https://picsum.photos/600/400?random=51",
+      "content": "This is a test description to verify the functionality of the NewPostForm component, ensuring proper data handling and navigation after submission",
+      "author": "Elena Brchioska",
+      "date": "2024-11-01",
+      "id": "1730464408267"
+    },
+    {
+      "title": "A new test post",
+      "image": "https://picsum.photos/600/400?random=60",
+      "content": "I am testing the validation now, so this is a test description. Oh yay! You can't leave any field empty!",
+      "author": "Elena Brchioska",
+      "date": "2024-11-01",
+      "id": "1730472753724"
     }
   ],
   "user": {
