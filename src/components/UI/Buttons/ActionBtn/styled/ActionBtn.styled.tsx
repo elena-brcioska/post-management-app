@@ -3,18 +3,21 @@ import { Button } from '@mui/material';
 import { type ComponentPropsWithoutRef, type FC} from 'react';
 
 const Wrapper = styled(Button)(() => ({
+  color: "#478CCF",
+  fontSize: "1rem",
+  padding: "0",
+  display: "inline",
+  minWidth: "20px",
+  marginLeft: "1rem",
+  border: "none",
+  boxShadow: "none",
+  marginRight: "5rem",
+  '&:hover': {
+    boxShadow: "none",
+    textDecoration: "underline"
+  },
+}));
 
-    color: "#478CCF",
-    fontSize: "0.8rem",
-    padding: "0",
-    display: "inline",
-    minWidth: "20px",
-    marginLeft: "1rem",
-    position: "absolute",
-    top: "50%",
-    right: "1rem",
-    transform: "translateY(-50%)" 
-}))
 
 type WrapperProps = {
 isUserCard?: boolean

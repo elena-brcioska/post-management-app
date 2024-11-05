@@ -52,16 +52,9 @@ export interface IUserCard {
     onUpdate: (update: IEducation) => void
   }
 
-  export interface IGeneralUserProps {
-    user: IGeneral,
-    userCard: IUserCard,
-    onUpdate: (update: IGeneral | IUserCard) => void
-}
-
-
-export interface IUserCardProps {
-  user: IUserCard,
-  onUpdate: (update: IUserCard) => void
+  export interface IUserProps {
+    user: IUser,
+    onUpdate: (update: IUser) => void
 }
 
 export interface IUserFieldProps {
@@ -71,7 +64,8 @@ export interface IUserFieldProps {
   isUserCard?: boolean;
   type?: "text" | "number" | "radio" | "date" | "select";
   options?: { value: string; label: string }[];  // For radio or select options
-  onSave: (id: string, value: string) => void;
+  onChange: (id: string, value: string) => void;
+  isEdit: boolean
 };
 
   

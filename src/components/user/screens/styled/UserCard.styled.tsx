@@ -6,16 +6,20 @@ const Wrapper = styled(Box)(({theme}) => ({
     display: "flex",
     alignItems: "center",
     gap: "4rem",
-    width: "600px",
+    width: "60%",
+
+    "& div.user-screen-title": {
+        display: "flex",
+    },
 
     "& h2": {
         marginBottom: "0",
-        color: theme.palette.secondary.dark
+        color: theme.palette.secondary.dark,
     },
 
     "& p": {
-        fontSize: "1rem",
-        margin: "0",
+        fontSize: "1rem !important",
+        margin: "0 !important",
         display: "inline-block"
     },
 

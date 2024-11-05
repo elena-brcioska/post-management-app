@@ -55,8 +55,6 @@ const HomePage = () => {
     },
 });
 
-console.log(data)
-
   const handleScroll = () => {
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
     if (scrollHeight - scrollTop <= clientHeight + 50 && hasNextPage) {

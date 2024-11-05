@@ -2,11 +2,12 @@ import { styled } from '@mui/material/styles';
 import { Box } from '@mui/material';
 import { type ReactNode } from 'react';
 
-const Wrapper = styled(Box)(({ theme }) => ({
+const Wrapper = styled(Box)<{ marginBottom?: string }>(({ theme, marginBottom }) => ({
   padding: theme.spacing(6),
   backgroundColor: theme.palette.background.default,
   borderRadius: theme.shape.borderRadius,
   boxShadow: theme.shadows[7],
+  marginBottom: marginBottom || "0",
   
   '& h2': {
     fontSize: '2rem',
@@ -18,9 +19,7 @@ const Wrapper = styled(Box)(({ theme }) => ({
     color: theme.palette.text.secondary,
     marginBottom: theme.spacing(5),
   },
-  '& img': {
-    width: '100%',
-  },
+
   '& a': {
     background: theme.palette.primary.main,
     padding: "1rem",
@@ -37,10 +36,11 @@ const Wrapper = styled(Box)(({ theme }) => ({
 
 interface WrapperProps {
   children: ReactNode;
+  marginBottom?: string;
 }
 
-const StyledBaseCard: React.FC<WrapperProps> = ({ children }) => {
-  return <Wrapper>{children}</Wrapper>;
+const StyledBaseCard: React.FC<WrapperProps> = ({ children, marginBottom }) => {
+  return <Wrapper marginBottom={marginBottom}>{children}</Wrapper>;
 };
 
 export default StyledBaseCard;

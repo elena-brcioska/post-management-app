@@ -31,6 +31,7 @@ const PostDetails = () => {
 
     const onEdit = useMutation({
         mutationFn: (updatedPost: IPostObject) => editPost(id!, updatedPost),
+        mutationKey: ["edited-post"],
         onSuccess: () => {
             handleCloseEdit()
             client.invalidateQueries({ queryKey: ["post", id] })
@@ -40,6 +41,7 @@ const PostDetails = () => {
 
     const onDelete = useMutation<IPostObject, unknown>({
         mutationFn: () => deletePost(id!),
+        mutationKey: ["delete-post"],
         onSuccess: () => {
             client.invalidateQueries({queryKey: ["posts"]});
             navigate("/")     

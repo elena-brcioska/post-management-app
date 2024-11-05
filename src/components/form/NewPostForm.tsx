@@ -16,6 +16,7 @@ const NewPostForm = () => {
 
     const mutation = useMutation<INewPost, unknown, INewPost>({
         mutationFn: (newPost) => createNewPost(newPost),
+        mutationKey: ["new-post"],
         onSuccess: () => {
             ref?.current?.reset();
             navigate("/");

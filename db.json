@@ -432,7 +432,7 @@
       "emailCard": "elena@elena.com"
     },
     "general": {
-      "birthDate": "1993-10-23",
+      "birthDate": "1994-10-22",
       "jobTitle": "Front End Developer",
       "gender": "Female",
       "company": "MAK-System"
@@ -440,12 +440,13 @@
     "contact": {
       "email": "test@example.com",
       "phoneNumber": "+123 456 7890",
-      "linkedin": "linkedin.com/in/example2",
+      "linkedin": "linkedin.com/in/example",
       "github": "github.com/example",
       "website": "www.example.com",
       "address": "123 Main St, City, Country",
       "twitter": "@example",
-      "facebook": "facebook.com/example"
+      "facebook": "facebook.com/example",
+      "gitHub": "github.com/example"
     },
     "education": {
       "university": "Example University",
@@ -453,11 +454,12 @@
       "degree": "Bachelor of Science",
       "fieldOfStudy": "Computer Science",
       "graduationYear": "2022",
-      "gpa": "3.6",
+      "gpa": "1.6",
       "honors": "Summa Cum Laude",
       "relevantCoursework": "Data Structures, Web Development",
       "extracurricularActivities": "Coding Club, Robotics Team",
-      "certifications": "Certified Front End Developer"
+      "certifications": "Certified Front End Developer",
+      "collage": "Example College2"
     }
   }
 }

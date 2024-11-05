@@ -1,23 +1,20 @@
-import { useState, type FC } from "react";
+import { ChangeEvent, useState, type FC } from "react";
 import StyledUserField from "../styled/UserField.styled";
-import ActionBtn from "../../UI/Buttons/ActionBtn/ActionBtn";
-import { Box, TextField, FormControl, InputLabel, Select, MenuItem, RadioGroup, FormControlLabel, Radio } from "@mui/material";
+import { Box, TextField, FormControl, InputLabel, Select, MenuItem, RadioGroup, FormControlLabel, Radio, SelectChangeEvent } from "@mui/material";
 import { type IUserFieldProps } from "../types";
 
 
 
-const UserField: FC<IUserFieldProps> = ({ label, id, data, isUserCard, type, options, onSave }) => {
-  const [isEdit, setIsEdit] = useState<boolean>(false);
+const UserField: FC<IUserFieldProps> = ({ label, id, data, isUserCard, type, options, isEdit, onChange }) => {
   const [inputValue, setInputValue] = useState<string>(data);
 
-  const onClickEditHandler = () => {
-    setIsEdit(true);
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent<string>) => {
+    const newValue = e.target.value;
+    setInputValue(newValue);
+      onChange?.(id, newValue);
   };
 
-  const onClickSaveHandler = () => {
-    setIsEdit(false);
-    onSave(id, inputValue);
-  };
 
   return (
     <StyledUserField isUserCard={isUserCard}>
@@ -30,7 +27,7 @@ const UserField: FC<IUserFieldProps> = ({ label, id, data, isUserCard, type, opt
             <FormControl component="fieldset">
               <RadioGroup
                 value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
+                onChange={handleInputChange}
               >
                 {options.map((option) => (
                   <FormControlLabel
@@ -49,7 +46,7 @@ const UserField: FC<IUserFieldProps> = ({ label, id, data, isUserCard, type, opt
                 labelId={`${id}-label`}
                 id={id}
                 value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
+                onChange={handleInputChange}
                 label={label}
               >
                 {options.map((option) => (
@@ -65,14 +62,12 @@ const UserField: FC<IUserFieldProps> = ({ label, id, data, isUserCard, type, opt
               id={id}
               variant="outlined"
               value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
+              onChange={handleInputChange}
             />
           )
         )}
 
-        <ActionBtn onClick={!isEdit ? onClickEditHandler : onClickSaveHandler}>
-          {!isEdit ? "Edit" : "Save"}
-        </ActionBtn>
+
       </Box>
     </StyledUserField>
   );

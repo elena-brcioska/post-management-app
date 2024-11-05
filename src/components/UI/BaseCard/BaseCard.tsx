@@ -1,10 +1,10 @@
 import { ComponentPropsWithoutRef, type FC} from "react";
 import StyledBaseCard from "./styled/BaseCard.styled";
 
-type BaseCardProps = ComponentPropsWithoutRef<'div'>
+type BaseCardProps = {marginBottom?: string} & ComponentPropsWithoutRef<'div'>
 
-const BaseCard: FC<BaseCardProps> = ({children}) => {
-  return <StyledBaseCard>
+const BaseCard: FC<BaseCardProps> = ({children, marginBottom}) => {
+  return <StyledBaseCard marginBottom={marginBottom}>
     {children}
   </StyledBaseCard>;
 };

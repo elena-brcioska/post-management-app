@@ -7,7 +7,7 @@ import Contact from "../../components/user/screens/contact/Contact";
 import { useSearchParams } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import api from '../../api/api'
-import { IContact, IEducation, IGeneral, IUser, IUserCard } from "../../components/user/types";
+import { type IUser } from "../../components/user/types";
 
 type UpdateType = IUser;
 
@@ -35,27 +35,18 @@ const User = () => {
 
  
   const mutation = useMutation<UpdateType, unknown, UpdateType>({
-    mutationFn: (update) => updateUser(update),
+    mutationFn: updateUser,
+    mutationKey: ["updated-user"],
     onSuccess: () => {
       queryClient.invalidateQueries({queryKey: ["user"]});
     },
   });
 
-  const onUpdate = (update: IGeneral | IContact | IEducation | IUserCard) => {
+  const onUpdate = (update: IUser) => {
     if (!user) return;
-  
-    const newUser: IUser = {
-      ...user,
-      ...(update as IContact).phoneNumber !== undefined && { contact: { ...user.contact, ...update } },
-      ...(update as IGeneral).birthDate !== undefined && { general: { ...user.general, ...update } },
-      ...(update as IEducation).degree !== undefined && { education: { ...user.education, ...update } },
-      ...(update as IUserCard).role !== undefined && { userCard: { ...user.userCard, ...update } },
-    };
 
-    console.log("new user", newUser);
+    mutation.mutate(update)
     
-  
-    mutation.mutate(newUser);
   };
 
 
@@ -70,15 +61,15 @@ const User = () => {
       <AppContent isUser={true}>
 
         {
-          (infoScreen === "general" || infoScreen === null) && (<General onUpdate={onUpdate} user={user.general} userCard={user.userCard}/>)
+          (infoScreen === "general" || infoScreen === null) && (<General onUpdate={onUpdate} user={user}/>)
         }
 
         {
-          infoScreen === "contact" && (<Contact user={user.contact} onUpdate={onUpdate} />)
+          infoScreen === "contact" && (<Contact user={user} onUpdate={onUpdate} />)
         }
 
         {
-          infoScreen === "education" && (<Education user={user.education} onUpdate={onUpdate} />)
+          infoScreen === "education" && (<Education user={user} onUpdate={onUpdate} />)
         }
 
       </AppContent>
