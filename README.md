@@ -59,7 +59,7 @@ npm install
 ```
 4. Start the application:
 ```bash
-Start the application:
+npm run start
 ```
 
 5. Open your browser and go to:
