@@ -69,7 +69,7 @@ http://localhost:5173/
 
 * If you want to access the api endpoint:
 ```bash
-http://localhost:3000/
+http://localhost:5000/
 ```
 
 ## Usage
