@@ -7,6 +7,7 @@ import ActionBar from '../../components/UI/ActionBar/ActionBar';
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import Header from '../../components/UI/Header/Header';
 import { IPostObject } from '../../components/posts/types';
+import Loading from '../../components/UI/Loading/Loading';
 
 const HomePage = () => {
   const [searchValue, setSearchValue] = useState<string>('');
@@ -55,14 +56,17 @@ const HomePage = () => {
     },
 });
 
-  const handleScroll = () => {
-    const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
-    if (scrollHeight - scrollTop <= clientHeight + 50 && hasNextPage) {
-      fetchNextPage();
-    }
-  };
+
 
   useEffect(() => {
+
+    const handleScroll = () => {
+      const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+      if (scrollHeight - scrollTop <= clientHeight + 50 && hasNextPage) {
+        fetchNextPage();
+      }
+    };
+
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -72,7 +76,7 @@ const HomePage = () => {
   const posts = data?.pages?.flatMap((page) => page.posts) || [];
   const totalCount = data?.pages[0]?.totalCount || 0;
 
-  if (isLoading) return <CircularProgress />;
+  if (isLoading) return <Loading />;
   if (isError) return <Typography color="error">Error fetching posts</Typography>;
 
   return (
@@ -85,6 +89,7 @@ const HomePage = () => {
         setValue={handleSearchChange}
       />
       <AppContent>
+
         <Header totalCount={totalCount} searchQuery={debouncedSearchValue} selectedAuthor={selectedAuthor} />
         <PostsWrapper sortOrder={ascending} posts={posts} />
         {hasNextPage && isFetchingNextPage && (<CircularProgress />)

@@ -59,7 +59,7 @@ const NewPostForm = () => {
     };
 
     return (
-        <StyledForm ref={ref} onSubmit={onSubmitHandle}>
+        <StyledForm ref={ref} onSubmit={onSubmitHandle} data-testid="new-post-form">
             <TextField
                 name="title"
                 id="title"

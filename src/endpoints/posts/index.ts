@@ -31,8 +31,6 @@ export const fetchPosts = async (
 
     const totalCount = parseInt(response.headers["x-total-count"], 10);
     
-    console.log('Response Data:', response.data);
-    console.log('Total Count:', response.headers['x-total-count']);
     
     return {
         posts: response.data,

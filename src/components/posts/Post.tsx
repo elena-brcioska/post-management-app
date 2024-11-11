@@ -8,7 +8,6 @@ import { formatDate } from "../../util/formtDate";
 
 const Post: FC<IPostProps> = ({post}) => {
 
-  console.log(post, "POST");
 
   return <BaseCard>
   <StyledPost>

@@ -1,12 +1,12 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { CircularProgress } from "@mui/material";
 import SinglePost from "../../components/posts/SinglePost";
 import AppContent from "../../layout/AppContent/AppContent";
 import EditPost from "../../components/posts/EditPost";
 import { useState } from "react";
 import { deletePost, editPost, fetchPost } from "../../endpoints/posts";
 import { IPostObject } from "../../components/posts/types";
+import Loading from "../../components/UI/Loading/Loading";
 
 const PostDetails = () => {
     const { id } = useParams();
@@ -57,7 +57,7 @@ const PostDetails = () => {
         onDelete.mutate()
     }   
 
-    if (isLoading) return <CircularProgress />;
+    if (isLoading) return <Loading />;
 
     if (isError) return <h2>No post found</h2>
 

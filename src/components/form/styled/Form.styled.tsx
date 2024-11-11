@@ -40,7 +40,7 @@ const Wrapper = styled(Form)(({ theme }) => ({
 type StyledFormProps = ComponentPropsWithoutRef<typeof Form>;
 
 const StyledForm = forwardRef<HTMLFormElement, StyledFormProps>(({ children, onSubmit }, ref) => {
-  return <Wrapper ref={ref} onSubmit={onSubmit}>{children}</Wrapper>;
+  return <Wrapper ref={ref} onSubmit={onSubmit} data-testid="new-post-form">{children}</Wrapper>;
 });
 
 export default StyledForm;
