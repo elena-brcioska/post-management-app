@@ -37,6 +37,45 @@ The primary goal of the application is to provide a seamless platform for users 
 - **Mock API:** JSON Server
 - **Routing:** React Router
 
+## Application Walkthrough
+
+![01](https://github.com/user-attachments/assets/359a7169-17b7-4616-a8d4-2e2e3b33a5f6)
+
+- **Landing Page** - This is the landing page of the app, where all the posts are listed. At the top it has a navbar, and a toolbar with filters. You can access the Create A New Post page from the toolbar
+
+
+https://github.com/user-attachments/assets/e1c83bae-ae15-45c5-8756-ad1edfaa311e
+
+
+- **Filters** - The search function and filters work synergically, meaning that you can apply the filters on the posts that your search has returned, and the other way around - you can search through your filtered posts. The search has a debouncing value of 3 seconds after the user stopped typing, to prevent unnecessary re-renders and API calls. There is also an option to sort the posts by date.
+
+
+https://github.com/user-attachments/assets/f9c1b9e4-e96c-40eb-bba8-525bdb32a09f
+
+
+- **Infinite scroll** - When more there are more than 5 posts available, the loading more posts is handleded dynamically as users reach the bottom of the page. This is more efficient for load time, improves performace and gives an elegant design.
+
+
+
+https://github.com/user-attachments/assets/72f5ee96-dd50-4298-a38f-25db92226a46
+
+- **Add A New Post** - When adding a post, there are 4 fields, and they are all required. If you try to submit a post with one or more fields empty, you will get a warning and the form won't submit. The moment you start filling out a field the error for that particular filed is lifted. The validation is handled on the Front-End.
+
+
+
+https://github.com/user-attachments/assets/2aa6a91d-0324-487f-b665-0b539b0c4fa0
+
+
+- **Edit and Delete post** - Through the Post Details page, there is an option to Edit or Delete a post. When trying to delete you are faced with a prompt asking you to confirm your action.
+
+
+
+https://github.com/user-attachments/assets/62d16616-aabe-4cc0-9112-bb783e35d6a4
+
+- **User Account** - The user info can be accessed through the navbar. The Information is divided into 3 categories, each can be accessed through a seperate tab. The user can edit and change his info, and save new info.
+
+
+
 ## Getting Started
 
 ### Prerequisites
