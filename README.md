@@ -86,7 +86,7 @@ Make sure you have [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.co
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/elena-brchioska/post-management-app.git
+git clone https://github.com/elena-brcioska/post-management-app.git
 ```
 2. Navigate to the project directory:
 ```bash
